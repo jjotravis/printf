@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count;
-
+	
 	va_start(args, format);
 	count = 0;
 
@@ -41,6 +41,10 @@ int _printf(const char *format, ...)
 					break;
 				case '\0':
 					return (-1);
+				default:
+					write(1, "%", 1);
+					write(1, format, 1);
+					count++;
 			}
 		}
 		format++;
