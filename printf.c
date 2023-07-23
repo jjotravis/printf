@@ -23,7 +23,6 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 			count++;
 		}
-
 		if (*format == '%')
 		{
 			format++;
@@ -34,13 +33,11 @@ int _printf(const char *format, ...)
 					write(1, &c, 1);
 					count++;
 					break;
-
 				case 's':
 					str = va_arg(args,  char *);
 					write(1, str, strlen(str));
 					count += strlen(str);
 					break;
-
 				case '%':
 					write(1, "%", 1);
 					count++;
