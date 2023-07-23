@@ -5,18 +5,17 @@
 *@format: Format specifier
 *Return: 0 on success
 */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
-	char c;
-	char *str;
 	int count;
 
 	va_start(args, format);
 	count = 0;
+
 	if (format == NULL)
 		return (-1);
+
 	while (*format)
 	{
 		if (*format != '%')
@@ -24,31 +23,50 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 			count++;
 		}
+
 		if (*format == '%')
 		{
 			format++;
-			if (*format == '\0')
-				return (count);
 			switch (*format)
 			{
 				case 'c':
-					c = (char)va_arg(args, int);
-					write(1, &c, 1);
-					count++;
+					count += comp_func(*format)(args);
 					break;
 				case 's':
-					str = va_arg(args,  char *);
-					write(1, str, strlen(str));
-					count += strlen(str);
+					count += comp_func(*format)(args);
 					break;
 				case '%':
 					write(1, "%", 1);
 					count++;
 					break;
+				case '\0':
+					return (-1);
 			}
 		}
 		format++;
 	}
 	va_end(args);
 	return (count);
+}
+
+/**
+ * comp_func - calls function for the passed specifier
+ * @d: specifier passed
+ * Return: pointer to specifier function
+ */
+int (*comp_func(const char d))(va_list)
+{
+	int i;
+	spec_func print_func[] = {
+		{'c', printc},
+		{'s', print_string}
+	};
+
+	for (i = 0; print_func[i].c != '\0'; i++)
+	{
+		if (print_func[i].c == d)
+			return (print_func[i].func);
+	}
+
+	return (0);
 }
