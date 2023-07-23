@@ -9,6 +9,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	char c;
+	char *str;
 
 	va_start(args, format);
 
@@ -25,20 +27,16 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					char c = (char)va_arg(args, int);
-
+					c = (char)va_arg(args, int);
 					write(1, &c, 1);
 					break;
 
 				case 's':
-					char *str = va_arg(args,  char *);
-
+					str = va_arg(args,  char *);
 					write(1, str, strlen(str));
 					break;
 
 				case '%':
-					char s = (char)va_arg(args, int);
-
 					write(1, "%", 1);
 					break;
 			}
