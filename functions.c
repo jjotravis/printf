@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * printc - print character
@@ -75,4 +76,34 @@ int print_int(va_list args)
 		}
 	}
 	return (count);
+}
+
+/**
+ * print_binary- print integer as binary
+ * @args: va_list args
+ * Return: char count
+ */
+int print_binary(va_list args)
+{
+	int num, i, j, array[32];
+
+	num = va_arg(args, int);
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+
+	while (num > 0)
+	{
+		array[i] = '0' + (num % 2);
+		num = num / 2;
+		i++;
+	}
+
+	for (j = i - 1; j >= 0; j--)
+	{
+		write(1, &array[j], 1);
+	}
+	return (i);
 }
