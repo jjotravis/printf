@@ -85,7 +85,7 @@ int print_int(va_list args)
  */
 int print_binary(va_list args)
 {
-	int num, i, j, array[32];
+	int num, i, j, array[65];
 
 	num = va_arg(args, int);
 	i = 0;
