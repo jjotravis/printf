@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count;
-	
+
 	va_start(args, format);
 	count = 0;
 
@@ -23,8 +23,7 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 			count++;
 		}
-
-		if (*format == '%')
+		else
 		{
 			format++;
 			switch (*format)
@@ -33,6 +32,9 @@ int _printf(const char *format, ...)
 					count += comp_func(*format)(args);
 					break;
 				case 's':
+					count += comp_func(*format)(args);
+					break;
+				case 'd': case 'i':
 					count += comp_func(*format)(args);
 					break;
 				case '%':
@@ -63,7 +65,9 @@ int (*comp_func(const char d))(va_list)
 	int i;
 	spec_func print_func[] = {
 		{'c', printc},
-		{'s', print_string}
+		{'s', print_string},
+		{'d', print_int},
+		{'i', print_int}
 	};
 
 	for (i = 0; print_func[i].c != '\0'; i++)
