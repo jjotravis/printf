@@ -88,7 +88,14 @@ int print_binary(va_list args)
 	int num, i, j, array[32];
 
 	num = va_arg(args, int);
-	if (num == 0)
+	i = 0;
+
+	if (num < 0)
+	{
+		array[i++] = '-';
+		num = -num;
+	}
+	else if (num == 0)
 	{
 		write(1, "0", 1);
 		return (1);
