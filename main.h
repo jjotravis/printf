@@ -24,6 +24,12 @@ int printc(va_list args);
 int print_string(va_list args);
 int print_int(va_list args);
 int print_binary(va_list args);
+int print_octal(va_list args);
+int print_hex(va_list args);
+int print_heX(va_list args);
+int print_unsigned(va_list args);
 int base_len(size_t number, int base);
+int hex_check(int num, char c);
+int get_num_len(size_t num);
 
 #endif

@@ -40,6 +40,18 @@ int _printf(const char *format, ...)
 				case 'b':
 					count += comp_func(*format)(args);
 					break;
+				case 'o':
+					count += comp_func(*format)(args);
+                    break;
+				case 'x':
+					count += comp_func(*format)(args);
+                    break;
+				case 'X':
+					count += comp_func(*format)(args);
+                    break;
+				case 'u':
+					count += comp_func(*format)(args);
+                    break;
 				case '%':
 					write(1, "%", 1);
 					count++;
@@ -71,7 +83,11 @@ int (*comp_func(const char d))(va_list)
 		{'s', print_string},
 		{'d', print_int},
 		{'i', print_int},
-		{'b', print_binary}
+		{'b', print_binary},
+		{'o', print_octal},
+		{'x', print_hex},
+		{'X', print_heX},
+		{'u', print_unsigned}
 	};
 
 	for (i = 0; print_func[i].c != '\0'; i++)

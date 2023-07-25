@@ -79,46 +79,60 @@ int print_int(va_list args)
 }
 
 /**
- * print_binary- print integer as binary
- * @args: va_list args
- * Return: char count
+ * get_num_len - get the len of the number passed
+ * @number: number
+ * Return: len of the number
  */
-int print_binary(va_list args)
+int get_num_len(size_t num)
 {
-	int i, j, len;
-	size_t num;
-	char *str;
+	int len;
 
-	num = va_arg(args, size_t);
-
+	len = 0;
 	if (num == 0)
-		return (write(1, "0", 1));
+		return (1);
 
-	if (num < 1)
-		return (-1);
-
-	/* return the length of the binary */
-	len = base_len(num, 2);
-	str = malloc(sizeof(char) * len + 1);
-
-	if (str == NULL)
-		return (-1);
-
-	i = 0;
 	while (num > 0)
 	{
-		str[i] = '0' + (num % 2);
-		num = num / 2;
-		i++;
+		len = len + 1;
+		num = num / 10;
 	}
-	str[i] = '\0';
-
-	for (j = i - 1; j >= 0; j--)
-	{
-		write(1, &str[j], 1);
-	}
-	free(str);
 	return (len);
+}
+
+/**
+ * print_unsigned - print usigned integers
+ * @args: argument list
+ * Return: char printed
+ */
+int print_unsigned(va_list args)
+{
+	size_t num;
+	int len, idx, count, i;
+	char *str_ptr;
+
+	count = 0;
+	num = va_arg(args, size_t);
+	len = get_num_len(num);
+
+	str_ptr = malloc(sizeof(char) * len + 1);
+	if (str_ptr == NULL)
+		return (-1);
+	
+	idx = len - 1;
+	while (num > 0)
+	{
+		str_ptr[idx] = '0' + (num % 10);
+		num = num / 10;
+		idx--;
+	}
+
+	for (i = 0; i < len; i++)
+	{
+		write(1, &str_ptr[i], 1);
+		count++;
+	}
+    free(str_ptr);
+	return (count);
 }
 
 /**
@@ -135,3 +149,5 @@ int base_len(size_t number, int base)
 		number = number / base;
 	return (i);
 }
+
+
