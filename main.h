@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 int _printf(const char *format, ...);
 
@@ -23,5 +24,6 @@ int printc(va_list args);
 int print_string(va_list args);
 int print_int(va_list args);
 int print_binary(va_list args);
+int base_len(size_t number, int base);
 
 #endif

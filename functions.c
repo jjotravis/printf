@@ -85,32 +85,53 @@ int print_int(va_list args)
  */
 int print_binary(va_list args)
 {
-	int num, i, j, array[65];
+	int i, j, len;
+	size_t num;
+	char *str;
 
-	num = va_arg(args, int);
+	num = va_arg(args, size_t);
+
+	if (num == 0)
+		return (write(1, "0", 1));
+
+	if (num < 1)
+		return (-1);
+
+	/* return the length of the binary */
+	len = base_len(num, 2);
+	str = malloc(sizeof(char) * len + 1);
+
+	if (str == NULL)
+		return (-1);
+
 	i = 0;
-
-	if (num < 0)
-	{
-		array[i++] = '-';
-		num = -num;
-	}
-	else if (num == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
-
 	while (num > 0)
 	{
-		array[i] = '0' + (num % 2);
+		str[i] = '0' + (num % 2);
 		num = num / 2;
 		i++;
 	}
+	str[i] = '\0';
 
 	for (j = i - 1; j >= 0; j--)
 	{
-		write(1, &array[j], 1);
+		write(1, &str[j], 1);
 	}
+	free(str);
+	return (len);
+}
+
+/**
+ * base_len - return the character len of converted integer
+ * @number: number to be convert
+ * @base: base to be converted to
+ * Return: char count
+ */
+int base_len(size_t number, int base)
+{
+	size_t i;
+
+	for (i = 0; number > 0; i++)
+		number = number / base;
 	return (i);
 }
