@@ -41,7 +41,7 @@ int base_len(size_t number, int base)
 
 /**
  * get_num_len - get the len of the number passed
- * @number: number
+ * @num: number
  * Return: len of the number
  */
 int get_num_len(size_t num)

@@ -42,16 +42,19 @@ int _printf(const char *format, ...)
 					break;
 				case 'o':
 					count += comp_func(*format)(args);
-                    break;
+					break;
 				case 'x':
 					count += comp_func(*format)(args);
-                    break;
+					break;
 				case 'X':
 					count += comp_func(*format)(args);
-                    break;
+					break;
 				case 'u':
 					count += comp_func(*format)(args);
-                    break;
+					break;
+				case 'r':
+					count += comp_func(*format)(args);
+					break;
 				case '%':
 					write(1, "%", 1);
 					count++;
@@ -87,7 +90,8 @@ int (*comp_func(const char d))(va_list)
 		{'o', print_octal},
 		{'x', print_hex},
 		{'X', print_heX},
-		{'u', print_unsigned}
+		{'u', print_unsigned},
+		{'r', print_reverse}
 	};
 
 	for (i = 0; print_func[i].c != '\0'; i++)

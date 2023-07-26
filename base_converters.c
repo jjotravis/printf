@@ -84,15 +84,15 @@ int print_octal(va_list args)
 	}
 	free(str);
 	return (len);
-} 
+}
 
 /**
- * print_hex- print integer as hex 
+ * print_hex- print integer as hex
  * @args: va_list args
  * Return: char count
  */
 int print_hex(va_list args)
-{ 
+{
 	int i, j, len, remainder;
 	size_t quotient;
 	char *str;
@@ -119,8 +119,8 @@ int print_hex(va_list args)
 		remainder = quotient % 16;
 		if (remainder > 9)
 		{
-            remainder = hex_check(remainder, 'x');
-			str[i++] = remainder; 
+			remainder = hex_check(remainder, 'x');
+			str[i++] = remainder;
 		}
 		else
 		{
@@ -140,12 +140,12 @@ int print_hex(va_list args)
 }
 
 /**
- * print_heX- print integer as heX 
+ * print_heX- print integer as heX
  * @args: va_list args
  * Return: char count
  */
 int print_heX(va_list args)
-{ 
+{
 	int i, j, len, remainder;
 	size_t quotient;
 	char *str;
@@ -172,8 +172,8 @@ int print_heX(va_list args)
 		remainder = quotient % 16;
 		if (remainder > 9)
 		{
-            remainder = hex_check(remainder, 'X');
-			str[i++] = remainder; 
+			remainder = hex_check(remainder, 'X');
+			str[i++] = remainder;
 		}
 		else
 		{

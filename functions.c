@@ -29,6 +29,32 @@ int print_string(va_list args)
 }
 
 /**
+ * print_reverse - print string in reverse
+ * @args: string
+ * Return: char count
+ */
+int print_reverse(va_list args)
+{
+	char *str;
+	int i, count;
+	char temp;
+
+	count = 0;
+	str = va_arg(args, char *);
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+
+	for (i = i - 1; i >= 0; i--)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+
+	return (count);
+}
+
+/**
  * print_int- print integer base 10
  * @args: va_list args
  * Return: char count
@@ -95,7 +121,7 @@ int print_unsigned(va_list args)
 	str_ptr = malloc(sizeof(char) * len + 1);
 	if (str_ptr == NULL)
 		return (-1);
-	
+
 	idx = len - 1;
 	while (num > 0)
 	{
@@ -109,6 +135,6 @@ int print_unsigned(va_list args)
 		write(1, &str_ptr[i], 1);
 		count++;
 	}
-    free(str_ptr);
+	free(str_ptr);
 	return (count);
 }

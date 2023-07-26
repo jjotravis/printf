@@ -31,5 +31,6 @@ int print_unsigned(va_list args);
 int base_len(size_t number, int base);
 int hex_check(int num, char c);
 int get_num_len(size_t num);
+int print_reverse(va_list args);
 
 #endif
