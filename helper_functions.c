@@ -30,9 +30,9 @@ int hex_check(int num, char c)
  * @base: base to be converted to
  * Return: char count
  */
-int base_len(size_t number, int base)
+int base_len(long int number, int base)
 {
-	size_t i;
+	long int i;
 
 	for (i = 0; number > 0; i++)
 		number = number / base;
@@ -44,7 +44,7 @@ int base_len(size_t number, int base)
  * @num: number passed
  * Return: len of the number
  */
-int get_num_len(size_t num)
+int get_num_len(long int num)
 {
 	int len;
 
