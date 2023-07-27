@@ -8,7 +8,7 @@
 int print_binary(va_list args)
 {
 	int i, j, len;
-	size_t num;
+	long num;
 	char *str;
 
 	num = va_arg(args, size_t);
