@@ -28,9 +28,9 @@ int print_octal(va_list args);
 int print_hex(va_list args);
 int print_heX(va_list args);
 int print_unsigned(va_list args);
-int base_len(size_t number, int base);
+int base_len(long int number, long int base);
 int hex_check(int num, char c);
-int get_num_len(size_t num);
+int get_num_len(long int num);
 int print_reverse(va_list args);
 
 #endif

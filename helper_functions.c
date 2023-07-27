@@ -30,7 +30,7 @@ int hex_check(int num, char c)
  * @base: base to be converted to
  * Return: char count
  */
-int base_len(long int number, int base)
+int base_len(long int number, long int base)
 {
 	long int i;
 
