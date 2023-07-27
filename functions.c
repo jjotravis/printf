@@ -37,7 +37,6 @@ int print_reverse(va_list args)
 {
 	char *str;
 	int i, count;
-	char temp;
 
 	count = 0;
 	str = va_arg(args, char *);
