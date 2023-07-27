@@ -25,11 +25,11 @@ int print_string(va_list args)
 	char *str;
 
 	str = va_arg(args, char *);
-    if (str == NULL)
-    {
-        write(1, "(null)", strlen("(null)"));
-        return (-1);
-    }
+	if (str == NULL)
+	{
+		write(1, "(null)", strlen("(null)"));
+		return (-1);
+	}
 
 	return (write(1, str, strlen(str)));
 }
