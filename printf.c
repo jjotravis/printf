@@ -61,10 +61,10 @@ int _printf(const char *format, ...)
 					break;
 				case '\0':
 					return (-1);
+                    break;
 				default:
-					write(1, "%", 1);
-					write(1, format, 1);
-					count++;
+					count += write(1, "%", 1);
+					count += write(1, format, 1);
 			}
 		}
 		format++;
